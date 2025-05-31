@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Montasir Hasan Tamim | Home</title>
     <link rel="stylesheet" href="style.css">
-    
+        <!-- AOS CSS -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,19 +29,26 @@
         </style>    
 </head>
 <body>
+
     <header>
         <h1> <a href="index.html">Montasir Hasan Tamim</a></h1>
         <nav>
             <ul>
-                <li><a href="#about">About</a></li>
+                <li><a href="#about">About me</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+           
         </nav>
     </header>
+    
 
+
+    
+   
     <section id="about">
         <h2>About Me</h2>
+        <h1>I am a <span id="typing-text"></span></h1>
         <p>Welcome to my personal webpage! I am Montasir Hasan Tamim, a passionate developer and tech enthusiast.</p>
         <p>I love creating innovative solutions and exploring new technologies. My journey in the tech world has been exciting, and I am always eager to learn more.</p>
         <p>Feel free to browse through my projects and get to know more about my work.</p>
@@ -108,18 +117,85 @@
             <li>Instagram: <a href="https://www.instagram.com/montasir.tamim/">Montasir Hasan Tamim</a></li>
         </ul>
         <p>Feel free to connect with me on any of these platforms!</p>
-        
+
+        <section>
+    <h2>Contact Me</h2>
+    <form id="contact-form">
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+      <input type="email" id="email" name="email" placeholder="Your Email" required>
+      <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send </button>
+    </form>
+    <p id="form-status"></p>
+  </section>
+
+            
     </section>
 
     <footer>
         <p>&copy; 2025 Montasir Hasan Tamim. All rights reserved.</p>
         <p>Last updated: October 2024</p>
         <p>Thank you for visiting my personal webpage!</p>
-        <p>For any inquiries or collaborations, please don't hesitate to reach out.</p>
-        <p>Stay connected and keep exploring the world of technology!</p>
-        <p>Follow me on my social media channels for updates and insights.</p>
-        <p>Let's innovate and create together!</p>
-
+        
     </footer>
+
+    <script></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init();
+
+        // Typing effect for the header
+        const typingText = document.getElementById('typing-text');
+        const roles = ['Web Developer', 'Software Engineer', 'Tech Enthusiast'];
+        let index = 0;
+
+        function typeRole() {
+            typingText.textContent = '';
+            const role = roles[index];
+            let charIndex = 0;
+
+            function typeChar() {
+                if (charIndex < role.length) {
+                    typingText.textContent += role[charIndex];
+                    charIndex++;
+                    setTimeout(typeChar, 100);
+                } else {
+                    index = (index + 1) % roles.length;
+                    setTimeout(typeRole, 2000); // Wait before typing next role
+                }
+            }
+
+            typeChar();
+        }
+
+        typeRole();
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Simulate form submission
+            document.getElementById('form-status').textContent = `Thank you, ${name}! Your message has been sent.`;
+            this.reset(); // Reset the form
+        });
+
+        // Add smooth scrolling to navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+    </script>
+</section>
+  
    </body>
 </html>
